@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TurboTechnik Under Development",
-  description: "The TurboTechnik website is currently under development. Please check back soon for updates!",
+  title: "TurboTechnik Marine Trading Under Development",
+  description: "The TurboTechnik Marine Trading website is currently under development. Please check back soon for updates!",
 };
 
 export default function RootLayout({

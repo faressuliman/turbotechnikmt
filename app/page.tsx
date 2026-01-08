@@ -32,7 +32,7 @@ export default function Home() {
 
         {/* Main Heading */}
         <h1 className="mb-4 text-5xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-6xl">
-          TurboTechnik
+          TurboTechnik <br />Marine Trading
         </h1>
 
         {/* Under Development Badge */}
