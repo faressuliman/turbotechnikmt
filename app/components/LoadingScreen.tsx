@@ -8,6 +8,13 @@ export default function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Preload logo image immediately
+    if (typeof window !== "undefined") {
+      const img = document.createElement("img");
+      img.src = "/turbotechlogo.png";
+      (img as HTMLImageElement).fetchPriority = "high";
+    }
+
     // Hide loading screen when page is fully loaded
     const handleLoad = () => {
       setTimeout(() => {
@@ -127,6 +134,8 @@ export default function LoadingScreen() {
               height={100}
               className="h-auto w-auto"
               priority
+              fetchPriority="high"
+              unoptimized
             />
           </motion.div>
         </motion.div>
