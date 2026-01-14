@@ -59,7 +59,7 @@ export default function ContentSection() {
                 onClick={() => setActiveSection(index)}
                 aria-label={`Navigate to ${section.name} section`}
                 aria-pressed={isActive}
-                className={`flex-1 px-2 sm:px-3 py-2 text-xs sm:text-sm transition-all cursor-pointer border-r border-[#CEF3FF] last:border-r-0 ${
+                className={`flex-1 px-2 sm:px-3 py-2.5 text-xs sm:text-sm transition-all cursor-pointer border-r border-[#CEF3FF] last:border-r-0 ${
                   isActive
                     ? "bg-gradient-to-r from-[#0A3251] to-[#07254B] text-white"
                     : "text-[#07254B] hover:bg-[#CEF3FF]"
@@ -102,13 +102,25 @@ export default function ContentSection() {
                 className="h-auto w-auto max-w-[100px] sm:max-w-[120px]"
               />
             </motion.div>
-            <h2 className="mb-3 sm:mb-6 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#07254B] text-center">About TurboTechnik MT</h2>
-            <p className="mb-6 sm:mb-12 text-sm sm:text-base md:text-lg lg:text-xl text-[#4B6F9B] px-2">
+            <motion.h2
+              className="mb-3 sm:mb-6 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#07254B] text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              About TurboTechnik MT
+            </motion.h2>
+            <motion.p
+              className="mb-6 sm:mb-12 text-sm sm:text-base md:text-lg lg:text-xl text-[#4B6F9B] px-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               TurboTechnik Marine Trading is a leading provider of marine engineering solutions,
               specializing in ship maintenance, marine equipment, and comprehensive maritime services.
               With years of expertise, we ensure the highest standards of quality and reliability for
               all your maritime needs.
-            </p>
+            </motion.p>
             <motion.div
               className="grid gap-3 sm:gap-6 grid-cols-1 sm:grid-cols-3"
               variants={{
@@ -254,10 +266,10 @@ export default function ContentSection() {
         {activeSection === 2 && (
           <motion.div
             key="consultation"
-            initial={{ opacity: 0, scale: 0.9, rotateX: -10 }}
-            animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="mx-auto w-full max-w-2xl"
           >
             <ConsultationForm />
@@ -268,10 +280,10 @@ export default function ContentSection() {
         {activeSection === 3 && (
           <motion.div
             key="careers"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="mx-auto w-full max-w-2xl"
           >
             <CareersForm />

@@ -125,8 +125,8 @@ export default function FooterSection() {
                   <Mail className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-[#07254B]" />
                   <span className="break-all">info@turbotechnik.com</span>
                 </li>
-                <li className="flex items-start gap-3 text-xs sm:text-sm md:text-base text-[#4B6F9B]">
-                  <MapPin className="mt-1 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-[#07254B]" />
+                <li className="flex items-center gap-3 text-xs sm:text-sm md:text-base text-[#4B6F9B]">
+                  <MapPin className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-[#07254B]" />
                   <span>Dubai, United Arab Emirates</span>
                 </li>
               </ul>

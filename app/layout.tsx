@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Toaster } from "react-hot-toast";
 import LoadingScreen from "./components/LoadingScreen";
 import "./globals.css";
 
@@ -31,7 +30,6 @@ export default function RootLayout({
       >
         <LoadingScreen />
         {children}
-        <Toaster position="bottom-center" />
       </body>
     </html>
   );

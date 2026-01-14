@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { CheckCircle, Upload, ArrowDownRight, Info } from "lucide-react";
 import { useState } from "react";
 import { z } from "zod";
-import toast from "react-hot-toast";
 import { careersSchema, careersTextFieldsSchema, type CareersFormData } from "../validation/careers";
 
 export default function CareersForm() {
@@ -78,7 +77,6 @@ export default function CareersForm() {
       }
 
       setIsSuccess(true);
-      toast.success("Your Application has been successfully sent");
       setFormData({
         fullName: "",
         email: "",
@@ -104,8 +102,13 @@ export default function CareersForm() {
         setErrors(fieldErrors);
       } else {
         const errorMessage = error instanceof Error ? error.message : "Failed to submit. Please try again.";
-        setErrors({ cv: errorMessage });
-        toast.error(errorMessage);
+        // Only show CV error if CV is missing; otherwise rely on general messaging/UI
+        if (!formData.cv) {
+          setErrors({ cv: errorMessage });
+        } else {
+          setErrors({ cv: undefined });
+        }
+        console.error(errorMessage);
       }
     } finally {
       setIsSubmitting(false);
@@ -130,7 +133,7 @@ export default function CareersForm() {
       </div>
       {isSuccess ? (
         <motion.div
-          className="flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-600/20 p-12 backdrop-blur-sm"
+          className="flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-200/50 p-12 shadow-lg"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 200 }}
@@ -140,9 +143,9 @@ export default function CareersForm() {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
           >
-            <CheckCircle className="mb-4 h-16 w-16 text-green-400" />
+            <CheckCircle className="mb-4 h-16 w-16 text-emerald-500" />
           </motion.div>
-          <p className="text-xl font-semibold text-[#07254B]">Thank you!</p>
+          <p className="text-xl font-semibold text-[#07254B] mb-2">Thank you!</p>
           <p className="text-[#4B6F9B]">We&apos;ll review your application soon.</p>
         </motion.div>
       ) : (
@@ -229,11 +232,30 @@ export default function CareersForm() {
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-lg bg-gradient-to-r from-[#0A3251] to-[#07254B] px-6 py-4 font-semibold text-white transition-all hover:shadow-lg disabled:opacity-50 cursor-pointer mt-2 sm:mt-0"
+            className="w-full rounded-lg bg-gradient-to-r from-[#0A3251] to-[#07254B] px-6 py-4 font-semibold text-white transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:hover:bg-gradient-to-r disabled:hover:from-[#0A3251] disabled:hover:to-[#07254B] cursor-pointer mt-2 sm:mt-0 flex items-center justify-center"
             whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
             whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
           >
-            <span className="text-sm sm:text-base">{isSubmitting ? "Submitting..." : "Submit Application"}</span>
+            {isSubmitting ? (
+              <>
+                <svg
+                  className="mr-3 -ml-1 w-5 h-5 animate-spin text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <span className="text-sm sm:text-base">Submitting...</span>
+              </>
+            ) : (
+              <span className="text-sm sm:text-base">Submit Application</span>
+            )}
           </motion.button>
         </form>
       )}

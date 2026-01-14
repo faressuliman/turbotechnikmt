@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { CheckCircle, ArrowDownRight, ChevronDown, Info } from "lucide-react";
 import { useState } from "react";
 import { z } from "zod";
-import toast from "react-hot-toast";
 import { consultationSchema, type ConsultationFormData } from "../validation/consultation";
 
 export default function ConsultationForm() {
@@ -50,7 +49,6 @@ export default function ConsultationForm() {
       }
 
       setIsSuccess(true);
-      toast.success("Your Request has been successfully sent");
       setFormData({
         fullName: "",
         email: "",
@@ -75,7 +73,7 @@ export default function ConsultationForm() {
       } else {
         const errorMessage = error instanceof Error ? error.message : "Failed to submit. Please try again.";
         setErrors({ requirements: errorMessage });
-        toast.error(errorMessage);
+        console.error(errorMessage);
       }
     } finally {
       setIsSubmitting(false);
@@ -101,7 +99,7 @@ export default function ConsultationForm() {
       </div>
       {isSuccess ? (
         <motion.div
-          className="flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-600/20 p-12 backdrop-blur-sm"
+          className="flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-200/50 p-12 shadow-lg"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 200 }}
@@ -111,13 +109,13 @@ export default function ConsultationForm() {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
           >
-            <CheckCircle className="mb-4 h-16 w-16 text-green-400" />
+            <CheckCircle className="mb-4 h-16 w-16 text-emerald-500" />
           </motion.div>
-          <p className="text-xl font-semibold text-white">Thank you!</p>
-          <p className="text-blue-200">We&apos;ll get back to you soon.</p>
+          <p className="text-xl font-semibold text-[#07254B] mb-2">Thank you!</p>
+          <p className="text-[#4B6F9B]">We&apos;ll get back to you soon.</p>
         </motion.div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
               <input
@@ -229,11 +227,30 @@ export default function ConsultationForm() {
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-lg bg-gradient-to-r from-[#0A3251] to-[#07254B] px-6 py-4 font-semibold text-white transition-all hover:shadow-lg disabled:opacity-50 cursor-pointer"
+            className="w-full rounded-lg bg-gradient-to-r from-[#0A3251] to-[#07254B] px-6 py-4 font-semibold text-white transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:hover:bg-gradient-to-r disabled:hover:from-[#0A3251] disabled:hover:to-[#07254B] cursor-pointer flex items-center justify-center"
             whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
             whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
           >
-            <span className="text-sm sm:text-base">{isSubmitting ? "Submitting..." : "Submit Request"}</span>
+            {isSubmitting ? (
+              <>
+                <svg
+                  className="mr-3 -ml-1 w-5 h-5 animate-spin text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <span className="text-sm sm:text-base">Submitting...</span>
+              </>
+            ) : (
+              <span className="text-sm sm:text-base">Submit Request</span>
+            )}
           </motion.button>
         </form>
       )}

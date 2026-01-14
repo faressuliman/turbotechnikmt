@@ -40,7 +40,8 @@ export async function POST(request: NextRequest) {
     // Email content
     const mailOptions = {
       from: process.env.SMTP_USER || "noreply@turbotechnik.com",
-      to: process.env.CONTACT_EMAIL || "faresashraf20044@gmail.com", // You'll provide this later
+      replyTo: validated.email, // So replies go to the form submitter
+      to: process.env.CONTACT_EMAIL || "faresashraf20044@gmail.com",
       subject: `New Consultation Request from ${validated.fullName}`,
       html: `
         <h2>New Consultation Request</h2>

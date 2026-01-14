@@ -22,20 +22,29 @@ export async function POST(request: NextRequest) {
 
     const validated = careersApiSchema.parse({ fullName, email, phone });
 
+    // Validate file size (10MB limit)
+    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+    if (cvFile.size > maxSize) {
+      return NextResponse.json(
+        { error: "File size exceeds 10MB limit" },
+        { status: 400 }
+      );
+    }
+
     // Convert file to buffer for email attachment
     const bytes = await cvFile.arrayBuffer();
     const buffer = Buffer.from(bytes);
     
-    // For production: Use cloud storage (Cloudinary, AWS S3, etc.) instead of server storage
-    // Serverless platforms (Vercel, Netlify) don't support persistent file storage
-    // Option 1: Attach directly to email (current approach - works but has size limits)
-    // Option 2: Upload to cloud storage and send download link in email (recommended)
+    // Sanitize filename to prevent issues
+    const sanitizedFilename = cvFile.name.replace(/[^a-zA-Z0-9._-]/g, '_');
 
     // Check if SMTP is configured
     if (!process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
       console.error("SMTP credentials not configured");
+      console.error("SMTP_USER:", process.env.SMTP_USER ? "Set" : "Missing");
+      console.error("SMTP_PASSWORD:", process.env.SMTP_PASSWORD ? "Set" : "Missing");
       if (process.env.NODE_ENV === "development") {
-        console.log("Email would be sent to:", process.env.CAREERS_EMAIL || "careers@turbotechnik.com");
+        console.log("Email would be sent to:", process.env.CAREERS_EMAIL);
         console.log("Application data:", validated);
         console.log("CV file:", cvFile.name, `(${(cvFile.size / 1024 / 1024).toFixed(2)} MB)`);
         return NextResponse.json(
@@ -62,8 +71,9 @@ export async function POST(request: NextRequest) {
 
     // Email content
     const mailOptions = {
-      from: process.env.SMTP_USER || "noreply@turbotechnik.com",
-      to: process.env.CAREERS_EMAIL || "careers@turbotechnik.com",
+      from: process.env.SMTP_USER,
+      replyTo: validated.email, // So replies go to the form submitter
+      to: process.env.CAREERS_EMAIL,
       subject: `New Career Application from ${validated.fullName}`,
       html: `
         <h2>New Career Application</h2>
@@ -71,12 +81,12 @@ export async function POST(request: NextRequest) {
         <p><strong>Email:</strong> ${validated.email}</p>
         <p><strong>Phone:</strong> ${validated.phone}</p>
         <p><strong>CV File:</strong> ${cvFile.name} (${(cvFile.size / 1024 / 1024).toFixed(2)} MB)</p>
-        <p><em>The CV is attached to this email. For better reliability with large files, consider using cloud storage (Cloudinary/S3) and sending a download link instead.</em></p>
       `,
       attachments: [
         {
-          filename: cvFile.name,
+          filename: sanitizedFilename,
           content: buffer,
+          contentType: cvFile.type || 'application/pdf',
         },
       ],
     };
@@ -96,8 +106,19 @@ export async function POST(request: NextRequest) {
     }
 
     console.error("Error processing application:", error);
+    
+    // Provide more specific error messages
+    let errorMessage = "Failed to submit application";
+    if (error && typeof error === 'object' && 'code' in error) {
+      if (error.code === 'EAUTH') {
+        errorMessage = "Email authentication failed. Please check SMTP credentials.";
+      } else if (error.code === 'EMESSAGE') {
+        errorMessage = "Email message error. File may be too large.";
+      }
+    }
+    
     return NextResponse.json(
-      { error: "Failed to submit application" },
+      { error: errorMessage },
       { status: 500 }
     );
   }

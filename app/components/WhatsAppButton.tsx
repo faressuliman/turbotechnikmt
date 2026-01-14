@@ -1,11 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function WhatsAppButton() {
   const phoneNumber = "+97141234567"; // Replace with actual WhatsApp number
   const message = "Hello, I'm interested in your marine engineering services.";
   const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window === "undefined") return;
+      const scrollY = window.scrollY || window.pageYOffset;
+      const viewportHeight = window.innerHeight || 0;
+
+      // Show WhatsApp button only after user has scrolled past most of the hero/navigation area
+      setIsVisible(scrollY > viewportHeight * 0.6);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
+  if (!isVisible) return null;
 
   return (
     <motion.a
@@ -16,7 +43,7 @@ export default function WhatsAppButton() {
       className="fixed bottom-6 left-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-green-600 shadow-lg transition-all hover:shadow-xl sm:bottom-6 sm:left-6 sm:h-14 sm:w-14 cursor-pointer"
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
-      transition={{ type: "spring", stiffness: 200, delay: 1 }}
+      transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
     >

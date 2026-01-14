@@ -11,6 +11,10 @@ export default function LoadingScreen() {
     // Hide loading screen when page is fully loaded
     const handleLoad = () => {
       setTimeout(() => {
+        // Notify other components (e.g., HeroSection) that loading has finished
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new Event("loadingComplete"));
+        }
         setIsLoading(false);
       }, 1000); // Small delay for smooth transition
     };
