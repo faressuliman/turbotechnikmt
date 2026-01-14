@@ -30,7 +30,7 @@ export default function ContentSection() {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen snap-start items-center justify-center bg-white py-6 sm:py-12" style={{ isolation: "isolate", zIndex: 1 }}>
+    <section className="relative flex snap-start items-start justify-center bg-white pt-2 pb-12 md:pt-[72px] md:pb-12 lg:min-h-screen lg:py-12" style={{ isolation: "isolate", zIndex: 1 }}>
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
@@ -75,7 +75,7 @@ export default function ContentSection() {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 pt-4 sm:pt-0">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 pt-16 sm:pt-8 md:pt-0">
         {/* About Us Section */}
         {activeSection === 0 && (
           <motion.div
@@ -100,8 +100,8 @@ export default function ContentSection() {
                 className="h-auto w-auto max-w-[100px] sm:max-w-[120px]"
               />
             </motion.div>
-            <h2 className="mb-3 sm:mb-6 text-2xl sm:text-4xl md:text-5xl font-bold text-[#07254B]">About TurboTechnik MT</h2>
-            <p className="mb-6 sm:mb-12 text-base sm:text-lg md:text-xl text-[#4B6F9B] px-2">
+            <h2 className="mb-3 sm:mb-6 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#07254B] text-center">About TurboTechnik MT</h2>
+            <p className="mb-6 sm:mb-12 text-sm sm:text-base md:text-lg lg:text-xl text-[#4B6F9B] px-2">
               TurboTechnik Marine Trading is a leading provider of marine engineering solutions,
               specializing in ship maintenance, marine equipment, and comprehensive maritime services.
               With years of expertise, we ensure the highest standards of quality and reliability for
@@ -147,8 +147,8 @@ export default function ContentSection() {
                     <div className="mb-3 sm:mb-4 inline-flex rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-600/20 p-2 sm:p-3">
                       <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${stat.color}`} />
                     </div>
-                    <div className="mb-2 text-2xl sm:text-3xl font-bold text-[#07254B]">{stat.value}</div>
-                    <div className="text-sm sm:text-base text-[#4B6F9B]">{stat.label}</div>
+                    <div className="mb-2 text-xl sm:text-2xl md:text-3xl font-bold text-[#07254B]">{stat.value}</div>
+                    <div className="text-xs sm:text-sm md:text-base text-[#4B6F9B]">{stat.label}</div>
                   </motion.div>
                 );
               })}
@@ -165,10 +165,10 @@ export default function ContentSection() {
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="mb-2 sm:mb-4 text-center text-xl sm:text-2xl md:text-3xl font-bold text-[#07254B]">
+            <h2 className="mb-2 sm:mb-4 text-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#07254B]">
               Our Services
             </h2>
-            <p className="mb-6 sm:mb-10 text-center text-sm sm:text-base text-[#4B6F9B] max-w-2xl mx-auto">
+            <p className="mb-6 sm:mb-10 text-center text-xs sm:text-sm md:text-base text-[#4B6F9B] max-w-2xl mx-auto">
               Propulsion, power generation and centralized marine HVAC engineered and delivered for your vessel.
             </p>
             <div className="mb-6 sm:mb-12">
@@ -208,8 +208,8 @@ export default function ContentSection() {
                     <Target className="h-6 w-6 text-[#07254B]" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold mb-2 text-[#07254B]">Mission</h3>
-                    <p className="text-sm text-[#4B6F9B] leading-relaxed">
+                    <h3 className="text-base sm:text-lg font-bold mb-2 text-[#07254B]">Mission</h3>
+                    <p className="text-xs sm:text-sm md:text-base text-[#4B6F9B] leading-relaxed">
                       To deliver exceptional marine engineering solutions that ensure safety, efficiency,
                       and reliability for all maritime operations worldwide.
                     </p>
@@ -236,8 +236,8 @@ export default function ContentSection() {
                     <Eye className="h-6 w-6 text-[#07254B]" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold mb-2 text-[#07254B]">Vision</h3>
-                    <p className="text-sm text-[#4B6F9B] leading-relaxed">
+                    <h3 className="text-base sm:text-lg font-bold mb-2 text-[#07254B]">Vision</h3>
+                    <p className="text-xs sm:text-sm md:text-base text-[#4B6F9B] leading-relaxed">
                       To be the global leader in marine engineering services, setting new standards for
                       excellence and innovation in the maritime industry.
                     </p>
@@ -256,6 +256,7 @@ export default function ContentSection() {
             animate={{ opacity: 1, scale: 1, rotateX: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.5 }}
+            className="mx-auto w-full max-w-2xl"
           >
             <ConsultationForm />
           </motion.div>
@@ -269,6 +270,7 @@ export default function ContentSection() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.5 }}
+            className="mx-auto w-full max-w-2xl"
           >
             <CareersForm />
           </motion.div>

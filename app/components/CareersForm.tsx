@@ -133,12 +133,12 @@ export default function CareersForm() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="mb-2 sm:mb-6">
-        <div className="mb-1 sm:mb-2 flex flex-wrap items-center gap-2 sm:gap-3">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#07254B]">Join the Elite Fleet</h2>
-          <ArrowDownRight className="h-6 w-6 sm:h-8 sm:w-8 text-[#07254B]" />
+      <div className="mb-4 sm:mb-6">
+        <div className="mb-2 flex flex-wrap items-center gap-2 sm:gap-3">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#07254B]">Join the Elite Fleet</h2>
+          <ArrowDownRight className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-[#07254B]" />
         </div>
-        <p className="text-xs sm:text-base text-[#4B6F9B]">
+        <p className="text-xs sm:text-sm md:text-base text-[#4B6F9B]">
           We are looking for the next generation of technical minds who understand that Marine Trading is an engineering discipline. If you are a Mariner with a passion for &quot;Technik&quot; and global logistics, transmit your dossier.
         </p>
       </div>
@@ -168,7 +168,7 @@ export default function CareersForm() {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-[#4B6F9B]/50"
+                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-xs sm:placeholder:text-base placeholder:text-[#4B6F9B]/50"
                 placeholder="Full Name"
               />
               {errors.fullName && (
@@ -184,7 +184,7 @@ export default function CareersForm() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-[#4B6F9B]/50"
+                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-xs sm:placeholder:text-base placeholder:text-[#4B6F9B]/50"
                 placeholder="Email Address"
               />
               {errors.email && (
@@ -201,7 +201,7 @@ export default function CareersForm() {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-300 delay-75 focus:border-[#07254B] focus:outline-none placeholder:text-[#4B6F9B]/50"
+              className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-300 delay-75 focus:border-[#07254B] focus:outline-none placeholder:text-xs sm:placeholder:text-base placeholder:text-[#4B6F9B]/50"
               placeholder="Phone Number"
             />
             {errors.phone && (

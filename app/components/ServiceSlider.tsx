@@ -84,7 +84,7 @@ export default function ServiceSlider() {
                       initial={{ y: 8, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.8, ease: "easeOut" }}
-                      className="text-lg sm:text-lg md:text-2xl font-bold text-[#07254B] mb-1 whitespace-normal"
+                      className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#07254B] mb-1 whitespace-normal"
                     >
                       {title}
                     </motion.h3>
@@ -93,7 +93,7 @@ export default function ServiceSlider() {
                       initial={{ y: 10, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-                      className="text-[#4B6F9B] text-base md:text-lg leading-relaxed"
+                      className="text-[#4B6F9B] text-sm sm:text-base md:text-lg leading-relaxed"
                     >
                       {description}
                     </motion.p>

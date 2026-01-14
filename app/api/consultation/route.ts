@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     // Email content
     const mailOptions = {
       from: process.env.SMTP_USER || "noreply@turbotechnik.com",
-      to: process.env.CONTACT_EMAIL || "info@turbotechnik.com", // You'll provide this later
+      to: process.env.CONTACT_EMAIL || "faresashraf20044@gmail.com", // You'll provide this later
       subject: `New Consultation Request from ${validated.fullName}`,
       html: `
         <h2>New Consultation Request</h2>

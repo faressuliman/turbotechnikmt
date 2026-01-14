@@ -96,10 +96,10 @@ export default function ConsultationForm() {
     >
       <div className="mb-4 sm:mb-6">
         <div className="mb-2 flex flex-wrap items-center gap-2 sm:gap-3">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#07254B]">Request Consultation</h2>
-          <ArrowDownRight className="h-6 w-6 sm:h-8 sm:w-8 text-[#07254B]" />
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#07254B]">Request Consultation</h2>
+          <ArrowDownRight className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-[#07254B]" />
         </div>
-        <p className="text-sm sm:text-base text-[#4B6F9B]">
+        <p className="text-xs sm:text-sm md:text-base text-[#4B6F9B]">
           Get in touch with our expert team to discuss your marine engineering needs. We&apos;re here to provide
           tailored solutions for your vessel maintenance, equipment, and maritime service requirements.
         </p>
@@ -130,7 +130,7 @@ export default function ConsultationForm() {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-[#4B6F9B]/50"
+                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-xs sm:placeholder:text-base placeholder:text-[#4B6F9B]/50"
                 placeholder="Full Name"
               />
               {errors.fullName && (
@@ -146,7 +146,7 @@ export default function ConsultationForm() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-[#4B6F9B]/50"
+                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-xs sm:placeholder:text-base placeholder:text-[#4B6F9B]/50"
                 placeholder="Email Address"
               />
               {errors.email && (
@@ -164,7 +164,7 @@ export default function ConsultationForm() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-[#4B6F9B]/50"
+                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-xs sm:placeholder:text-base placeholder:text-[#4B6F9B]/50"
                 placeholder="Phone Number"
               />
               {errors.phone && (
@@ -180,7 +180,7 @@ export default function ConsultationForm() {
                 name="vesselType"
                 value={formData.vesselType}
                 onChange={handleChange}
-                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-[#4B6F9B]/50"
+                className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none placeholder:text-xs sm:placeholder:text-base placeholder:text-[#4B6F9B]/50"
                 placeholder="Vessel Type"
               />
               {errors.vesselType && (
@@ -197,7 +197,7 @@ export default function ConsultationForm() {
                 name="serviceCategory"
                 value={formData.serviceCategory}
                 onChange={handleChange}
-                className="w-full border-2 border-[#CEF3FF] bg-white pl-4 pr-10 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none appearance-none cursor-pointer"
+                className="w-full border-2 border-[#CEF3FF] bg-white pl-4 pr-10 py-3 text-[#07254B] transition-all duration-150 focus:border-[#0A3251] focus:outline-none appearance-none cursor-pointer text-xs sm:text-base"
               >
                 <option value="">Select a service</option>
                 <option value="ship-maintenance">Ship Maintenance</option>
@@ -221,7 +221,7 @@ export default function ConsultationForm() {
               value={formData.requirements}
               onChange={handleChange}
               rows={5}
-              className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-300 delay-75 focus:border-[#07254B] focus:outline-none placeholder:text-[#4B6F9B]/50"
+              className="w-full border-2 border-[#CEF3FF] bg-white px-4 py-3 text-[#07254B] transition-all duration-300 delay-75 focus:border-[#07254B] focus:outline-none placeholder:text-xs sm:placeholder:text-base placeholder:text-[#4B6F9B]/50"
               placeholder="Please describe your requirements in detail"
             />
             {errors.requirements && (

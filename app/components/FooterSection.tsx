@@ -24,7 +24,7 @@ export default function FooterSection() {
   };
 
   return (
-    <section className="relative flex snap-start items-center justify-center bg-gradient-to-b from-slate-50 to-[#EEF6FB] py-6 sm:py-8 md:py-6 lg:py-12 border-t border-[#CEF3FF]/50" style={{ isolation: "isolate", zIndex: 1 }}>
+    <section className="relative flex snap-start items-center justify-center bg-gradient-to-b from-slate-50 to-[#EEF6FB] py-12 md:py-12 border-t border-[#CEF3FF]/50" style={{ isolation: "isolate", zIndex: 1 }}>
       {/* Grid Pattern Overlay */}
       <div
         className="absolute inset-0 opacity-10"
@@ -70,9 +70,9 @@ export default function FooterSection() {
               <div className="rounded-full bg-gradient-to-r from-[#0A3251] to-[#07254B] p-2">
                 <Ship className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-xl sm:text-xl md:text-2xl font-bold text-[#07254B]">TurboTechnik MT</h3>
+              <h3 className="text-lg sm:text-xl md:text-xl font-bold text-[#07254B]">TurboTechnik MT</h3>
             </div>
-            <p className="text-sm sm:text-sm md:text-base text-[#4B6F9B] leading-relaxed">
+            <p className="text-xs sm:text-sm md:text-base text-[#4B6F9B] leading-relaxed">
               Leading marine engineering solutions for vessels worldwide. Your trusted partner in
               maritime excellence.
             </p>
@@ -87,7 +87,7 @@ export default function FooterSection() {
             className="sm:flex sm:justify-center"
           >
             <div>
-              <h4 className="mb-3 sm:mb-3 md:mb-4 text-lg sm:text-lg md:text-xl font-semibold text-[#07254B]">Services</h4>
+              <h4 className="mb-3 sm:mb-3 md:mb-4 text-base sm:text-lg md:text-lg font-semibold text-[#07254B]">Services</h4>
               <ul className="space-y-1.5 sm:space-y-1.5 md:space-y-2">
                 {[
                   "Ship Maintenance",
@@ -97,12 +97,9 @@ export default function FooterSection() {
                   "Consultation",
                 ].map((service) => (
                   <li key={service}>
-                    <a
-                      href="#"
-                      className="text-sm sm:text-base text-[#4B6F9B] transition-colors hover:text-[#07254B]"
-                    >
+                    <span className="text-xs sm:text-sm md:text-base text-[#4B6F9B]">
                       {service}
-                    </a>
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -118,17 +115,17 @@ export default function FooterSection() {
             className="sm:flex sm:justify-end"
           >
             <div>
-              <h4 className="mb-3 sm:mb-3 md:mb-4 text-lg sm:text-lg md:text-xl font-semibold text-[#07254B]">Contact</h4>
+              <h4 className="mb-3 sm:mb-3 md:mb-4 text-base sm:text-lg md:text-lg font-semibold text-[#07254B]">Contact</h4>
               <ul className="space-y-2 sm:space-y-2 md:space-y-3">
-                <li className="flex items-center gap-3 text-sm sm:text-base text-[#4B6F9B]">
+                <li className="flex items-center gap-3 text-xs sm:text-sm md:text-base text-[#4B6F9B]">
                   <Phone className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-[#07254B]" />
                   <span>+971 4 123 4567</span>
                 </li>
-                <li className="flex items-center gap-3 text-sm sm:text-base text-[#4B6F9B]">
+                <li className="flex items-center gap-3 text-xs sm:text-sm md:text-base text-[#4B6F9B]">
                   <Mail className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-[#07254B]" />
                   <span className="break-all">info@turbotechnik.com</span>
                 </li>
-                <li className="flex items-start gap-3 text-sm sm:text-base text-[#4B6F9B]">
+                <li className="flex items-start gap-3 text-xs sm:text-sm md:text-base text-[#4B6F9B]">
                   <MapPin className="mt-1 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-[#07254B]" />
                   <span>Dubai, United Arab Emirates</span>
                 </li>

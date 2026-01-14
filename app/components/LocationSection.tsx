@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function LocationSection() {
   return (
-    <section className="relative flex snap-start items-center justify-center bg-gradient-to-b from-[#EEF6FB] to-[#E0F2FE] py-12 sm:py-24 md:py-16 sm:min-h-screen" style={{ isolation: "isolate", zIndex: 1 }}>
+    <section className="relative flex snap-start items-center justify-center bg-gradient-to-b from-[#EEF6FB] to-[#E0F2FE] py-12 md:py-12 lg:min-h-screen" style={{ isolation: "isolate", zIndex: 1 }}>
       <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -14,7 +14,7 @@ export default function LocationSection() {
           className="mx-auto max-w-5xl"
         >
           <div className="mb-3 sm:mb-8 text-center">
-            <h2 className="text-xl font-bold text-[#07254B] sm:text-2xl md:text-3xl">Where You Can Find Us</h2>
+            <h2 className="text-lg font-bold text-[#07254B] sm:text-xl md:text-2xl lg:text-3xl">Where You Can Find Us</h2>
           </div>
           <motion.div
             className="relative overflow-hidden rounded-xl sm:rounded-2xl border-2 border-[#CEF3FF] shadow-2xl shadow-[#0A3251]/20 bg-white"
