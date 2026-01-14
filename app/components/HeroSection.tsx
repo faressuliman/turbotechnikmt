@@ -93,7 +93,7 @@ export default function HeroSection() {
       <motion.button
         onClick={scrollToNext}
         aria-label="Scroll to next section"
-        className="absolute bottom-8 md:bottom-6 left-1/2 z-10 -translate-x-1/2 cursor-pointer"
+        className="absolute bottom-20 sm:bottom-16 md:bottom-6 left-1/2 z-10 -translate-x-1/2 cursor-pointer"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
         whileHover={{ scale: 1.1 }}
