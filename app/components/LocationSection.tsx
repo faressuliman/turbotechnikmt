@@ -32,6 +32,7 @@ export default function LocationSection() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              title="TurboTechnik Marine Trading Location - Dubai, United Arab Emirates"
               className="w-full sm:h-[500px] md:h-[600px]"
             />
           </motion.div>

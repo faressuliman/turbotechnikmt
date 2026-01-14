@@ -149,21 +149,22 @@ export default function FooterSection() {
             </div>
             <div className="flex gap-4 self-start">
               {[
-                { icon: Facebook, href: "#" },
-                { icon: Twitter, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Instagram, href: "#" },
+                { icon: Facebook, href: "#", name: "Facebook" },
+                { icon: Twitter, href: "#", name: "Twitter" },
+                { icon: Linkedin, href: "#", name: "LinkedIn" },
+                { icon: Instagram, href: "#", name: "Instagram" },
               ].map((social, index) => {
                 const Icon = social.icon;
                 return (
                   <motion.a
                     key={index}
                     href={social.href}
+                    aria-label={`Visit our ${social.name} page`}
                     className="rounded-full bg-white border border-[#CEF3FF] p-3 text-[#07254B] transition-colors hover:bg-[#CEF3FF] hover:text-[#0A3251] cursor-pointer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
-                    <Icon size={20} />
+                    <Icon size={20} aria-hidden="true" />
                   </motion.a>
                 );
               })}
@@ -185,13 +186,14 @@ export default function FooterSection() {
           {isVisible && (
             <motion.button
               onClick={scrollToTop}
+              aria-label="Scroll to top of page"
               className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0A3251] to-[#07254B] px-6 py-3 text-white transition-all hover:shadow-lg cursor-pointer"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ArrowUp size={20} />
+              <ArrowUp size={20} aria-hidden="true" />
               <span>Back to Top</span>
             </motion.button>
           )}

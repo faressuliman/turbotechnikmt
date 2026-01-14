@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TurboTechnik Marine Trading Under Development",
-  description: "The TurboTechnik Marine Trading website is currently under development. Please check back soon for updates!",
+  title: "TurboTechnik Marine Trading",
+  description: "Official website of TurboTechnik Marine Trading. Leading provider of marine engineering solutions, ship maintenance, marine equipment, and comprehensive maritime services. Your trusted partner in marine engineering excellence with cutting-edge technology and unparalleled expertise.",
 };
 
 export default function RootLayout({

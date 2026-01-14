@@ -73,13 +73,14 @@ export default function HeroSection() {
       {/* Scroll Down Indicator - Clickable */}
       <motion.button
         onClick={scrollToNext}
+        aria-label="Scroll to next section"
         className="absolute bottom-8 md:bottom-6 left-1/2 z-10 -translate-x-1/2 cursor-pointer"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-        <ChevronDown className="h-8 w-8 text-cyan-400" />
+        <ChevronDown className="h-8 w-8 text-cyan-400" aria-hidden="true" />
       </motion.button>
     </section>
   );

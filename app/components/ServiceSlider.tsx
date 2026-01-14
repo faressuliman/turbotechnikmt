@@ -107,19 +107,20 @@ export default function ServiceSlider() {
         {/* Next button */}
         <button
           onClick={nextService}
-          aria-label="Next"
+          aria-label="Next service"
           className="absolute bottom-3 right-3 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 h-9 w-9 md:h-12 md:w-12 rounded-full bg-[#0A3251] text-white flex items-center justify-center hover:bg-[#0c3e64] transition-colors cursor-pointer"
         >
-          <ChevronRight size={22} />
+          <ChevronRight size={22} aria-hidden="true" />
         </button>
       </motion.div>
 
       {/* Indicators - Keep the 4 dots */}
       <div className="mt-4 flex justify-center gap-2">
-        {services.map((_, index) => (
+        {services.map((service, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
+            aria-label={`Go to ${service.title}`}
             className={`h-2 rounded-full transition-all cursor-pointer ${
               index === currentIndex ? "w-8 bg-[#07254B]" : "w-2 bg-[#CEF3FF]"
             }`}
