@@ -135,7 +135,6 @@ export default function LoadingScreen() {
               className="h-auto w-auto"
               priority
               fetchPriority="high"
-              unoptimized
             />
           </motion.div>
         </motion.div>
