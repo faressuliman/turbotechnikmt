@@ -28,6 +28,8 @@ export default function SectionIndicator({ activeSection, onSectionChange }: Sec
             <motion.button
               key={index}
               onClick={() => onSectionChange(index)}
+              aria-label={`Navigate to ${section.name} section`}
+              aria-pressed={isActive}
               className="group relative cursor-pointer"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

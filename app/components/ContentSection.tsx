@@ -57,6 +57,8 @@ export default function ContentSection() {
               <motion.button
                 key={index}
                 onClick={() => setActiveSection(index)}
+                aria-label={`Navigate to ${section.name} section`}
+                aria-pressed={isActive}
                 className={`flex-1 px-2 sm:px-3 py-2 text-xs sm:text-sm transition-all cursor-pointer border-r border-[#CEF3FF] last:border-r-0 ${
                   isActive
                     ? "bg-gradient-to-r from-[#0A3251] to-[#07254B] text-white"
