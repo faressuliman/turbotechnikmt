@@ -13,7 +13,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative flex snap-start items-center justify-center overflow-hidden py-12 md:py-12 lg:h-screen lg:py-0" style={{ isolation: "isolate", zIndex: 1 }}>
+    <section className="relative flex min-h-screen snap-start items-center justify-center overflow-hidden" style={{ isolation: "isolate", zIndex: 1 }}>
       {/* Background Video */}
       <div className="absolute inset-0 overflow-hidden">
         <video
