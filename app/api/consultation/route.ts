@@ -11,7 +11,6 @@ export async function POST(request: NextRequest) {
     // Check if SMTP is configured
     if (!process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
       console.error("SMTP credentials not configured");
-      // In development, you might want to log the email instead of failing
       if (process.env.NODE_ENV === "development") {
         console.log("Email would be sent to:", process.env.CONTACT_EMAIL || "info@turbotechnik.com");
         console.log("Email content:", validated);
@@ -26,11 +25,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create transporter - configure with your email service
+    // Create transporter 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || "smtp.gmail.com",
       port: parseInt(process.env.SMTP_PORT || "587"),
-      secure: false, // true for 465, false for other ports
+      secure: false,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,

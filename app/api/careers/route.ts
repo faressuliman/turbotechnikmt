@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { z } from "zod";
 import { careersApiSchema } from "../../validation/careers";
-// Removed file system imports - using email attachment instead
-// For cloud storage, you would import: import { v2 as cloudinary } from 'cloudinary';
 
 export async function POST(request: NextRequest) {
   try {
