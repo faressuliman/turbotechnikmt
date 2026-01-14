@@ -4,17 +4,8 @@ import { motion } from "framer-motion";
 import { CheckCircle, ArrowDownRight, ChevronDown, Info } from "lucide-react";
 import { useState } from "react";
 import { z } from "zod";
-
-const consultationSchema = z.object({
-  fullName: z.string().min(1, "Full Name is required"),
-  email: z.string().min(1, "Email is required").email("Invalid email address"),
-  phone: z.string().min(1, "Phone is required").min(10, "Phone number must be at least 10 digits"),
-  vesselType: z.string().min(1, "Vessel Type is required"),
-  serviceCategory: z.string().min(1, "Service Category is required"),
-  requirements: z.string().min(1, "Requirements is required").min(10, "Please provide detailed requirements (at least 10 characters)"),
-});
-
-type ConsultationFormData = z.infer<typeof consultationSchema>;
+import toast from "react-hot-toast";
+import { consultationSchema, type ConsultationFormData } from "../validation/consultation";
 
 export default function ConsultationForm() {
   const [formData, setFormData] = useState<ConsultationFormData>({
@@ -54,10 +45,12 @@ export default function ConsultationForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit form");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to submit form");
       }
 
       setIsSuccess(true);
+      toast.success("Your Request has been successfully sent");
       setFormData({
         fullName: "",
         email: "",
@@ -80,7 +73,9 @@ export default function ConsultationForm() {
         });
         setErrors(fieldErrors);
       } else {
-        setErrors({ requirements: "Failed to submit. Please try again." });
+        const errorMessage = error instanceof Error ? error.message : "Failed to submit. Please try again.";
+        setErrors({ requirements: errorMessage });
+        toast.error(errorMessage);
       }
     } finally {
       setIsSubmitting(false);
@@ -134,7 +129,7 @@ export default function ConsultationForm() {
                 placeholder="Full Name"
               />
               {errors.fullName && (
-                <p className="mt-1 flex items-center gap-1 text-sm text-red-500">
+                <p className="mt-1 flex items-center gap-1 text-xs sm:text-base text-red-500">
                   <Info className="text-red-700 w-3 h-3" />
                   {errors.fullName}
                 </p>
@@ -150,7 +145,7 @@ export default function ConsultationForm() {
                 placeholder="Email Address"
               />
               {errors.email && (
-                <p className="mt-1 flex items-center gap-1 text-sm text-red-500">
+                <p className="mt-1 flex items-center gap-1 text-xs sm:text-base text-red-500">
                   <Info className="text-red-700 w-3 h-3" />
                   {errors.email}
                 </p>
@@ -168,7 +163,7 @@ export default function ConsultationForm() {
                 placeholder="Phone Number"
               />
               {errors.phone && (
-                <p className="mt-1 flex items-center gap-1 text-sm text-red-500">
+                <p className="mt-1 flex items-center gap-1 text-xs sm:text-base text-red-500">
                   <Info className="text-red-700 w-3 h-3" />
                   {errors.phone}
                 </p>
@@ -184,7 +179,7 @@ export default function ConsultationForm() {
                 placeholder="Vessel Type"
               />
               {errors.vesselType && (
-                <p className="mt-1 flex items-center gap-1 text-sm text-red-500">
+                <p className="mt-1 flex items-center gap-1 text-xs sm:text-base text-red-500">
                   <Info className="text-red-700 w-3 h-3" />
                   {errors.vesselType}
                 </p>
@@ -238,7 +233,7 @@ export default function ConsultationForm() {
             whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
             whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
           >
-            {isSubmitting ? "Submitting..." : "Submit Request"}
+            <span className="text-sm sm:text-base">{isSubmitting ? "Submitting..." : "Submit Request"}</span>
           </motion.button>
         </form>
       )}

@@ -1,15 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { z } from "zod";
-
-const consultationSchema = z.object({
-  fullName: z.string().min(2),
-  email: z.string().email(),
-  phone: z.string().min(10),
-  vesselType: z.string().min(2),
-  serviceCategory: z.string().min(1),
-  requirements: z.string().min(10),
-});
+import { consultationSchema } from "../../validation/consultation";
 
 export async function POST(request: NextRequest) {
   try {

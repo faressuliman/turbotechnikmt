@@ -24,7 +24,7 @@ export default function FooterSection() {
   };
 
   return (
-    <section className="relative flex snap-start items-center justify-center bg-gradient-to-b from-slate-50 to-[#EEF6FB] py-12 md:py-12 border-t border-[#CEF3FF]/50" style={{ isolation: "isolate", zIndex: 1 }}>
+    <section className="relative flex snap-start items-center justify-center bg-gradient-to-b from-slate-50 to-[#EEF6FB] pt-8 pb-12 md:pt-8 md:pb-12 border-t border-[#CEF3FF]/50" style={{ isolation: "isolate", zIndex: 1 }}>
       {/* Grid Pattern Overlay */}
       <div
         className="absolute inset-0 opacity-10"

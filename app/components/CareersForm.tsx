@@ -4,20 +4,8 @@ import { motion } from "framer-motion";
 import { CheckCircle, Upload, ArrowDownRight, Info } from "lucide-react";
 import { useState } from "react";
 import { z } from "zod";
-
-const careersSchema = z.object({
-  fullName: z.string().min(4, "Full Name is required"),
-  email: z.string().min(1, "Email is required").email("Invalid email address"),
-  phone: z.string().min(1, "Phone is required").min(10, "Phone number must be at least 10 digits"),
-  cv: z.instanceof(File, { message: "CV/Security Clearance is required" }),
-});
-
-type CareersFormData = {
-  fullName: string;
-  email: string;
-  phone: string;
-  cv: File | null;
-};
+import toast from "react-hot-toast";
+import { careersSchema, careersTextFieldsSchema, type CareersFormData } from "../validation/careers";
 
 export default function CareersForm() {
   const [formData, setFormData] = useState<CareersFormData>({
@@ -54,13 +42,7 @@ export default function CareersForm() {
 
     try {
       // Validate text fields
-      const textFieldsSchema = z.object({
-        fullName: z.string().min(4, "Full Name is required"),
-        email: z.string().min(1, "Email is required").email("Invalid email address"),
-        phone: z.string().min(1, "Phone is required").min(10, "Phone number must be at least 10 digits"),
-      });
-
-      const textFieldsValidated = textFieldsSchema.parse({
+      const textFieldsValidated = careersTextFieldsSchema.parse({
         fullName: formData.fullName,
         email: formData.email,
         phone: formData.phone,
@@ -91,10 +73,12 @@ export default function CareersForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit form");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to submit form");
       }
 
       setIsSuccess(true);
+      toast.success("Your Application has been successfully sent");
       setFormData({
         fullName: "",
         email: "",
@@ -119,7 +103,9 @@ export default function CareersForm() {
         }
         setErrors(fieldErrors);
       } else {
-        setErrors({ cv: "Failed to submit. Please try again." });
+        const errorMessage = error instanceof Error ? error.message : "Failed to submit. Please try again.";
+        setErrors({ cv: errorMessage });
+        toast.error(errorMessage);
       }
     } finally {
       setIsSubmitting(false);
@@ -172,7 +158,7 @@ export default function CareersForm() {
                 placeholder="Full Name"
               />
               {errors.fullName && (
-                <p className="mt-1 flex items-center gap-1 text-sm text-red-500">
+                <p className="mt-1 flex items-center gap-1 text-xs sm:text-base text-red-500">
                   <Info className="text-red-700 w-3 h-3" />
                   {errors.fullName}
                 </p>
@@ -188,7 +174,7 @@ export default function CareersForm() {
                 placeholder="Email Address"
               />
               {errors.email && (
-                <p className="mt-1 flex items-center gap-1 text-sm text-red-500">
+                <p className="mt-1 flex items-center gap-1 text-xs sm:text-base text-red-500">
                   <Info className="text-red-700 w-3 h-3" />
                   {errors.email}
                 </p>
@@ -243,11 +229,11 @@ export default function CareersForm() {
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-lg bg-gradient-to-r from-[#0A3251] to-[#07254B] px-6 py-4 font-semibold text-white transition-all hover:shadow-lg disabled:opacity-50 cursor-pointer"
+            className="w-full rounded-lg bg-gradient-to-r from-[#0A3251] to-[#07254B] px-6 py-4 font-semibold text-white transition-all hover:shadow-lg disabled:opacity-50 cursor-pointer mt-2 sm:mt-0"
             whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
             whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
           >
-            {isSubmitting ? "Submitting..." : "Submit Application"}
+            <span className="text-sm sm:text-base">{isSubmitting ? "Submitting..." : "Submit Application"}</span>
           </motion.button>
         </form>
       )}

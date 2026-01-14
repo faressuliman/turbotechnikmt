@@ -1,14 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { z } from "zod";
+import { careersApiSchema } from "../../validation/careers";
 // Removed file system imports - using email attachment instead
 // For cloud storage, you would import: import { v2 as cloudinary } from 'cloudinary';
-
-const careersSchema = z.object({
-  fullName: z.string().min(1),
-  email: z.string().email(),
-  phone: z.string().min(10),
-});
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,7 +20,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const validated = careersSchema.parse({ fullName, email, phone });
+    const validated = careersApiSchema.parse({ fullName, email, phone });
 
     // Convert file to buffer for email attachment
     const bytes = await cvFile.arrayBuffer();

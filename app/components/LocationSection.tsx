@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function LocationSection() {
   return (
-    <section className="relative flex snap-start items-center justify-center bg-gradient-to-b from-[#EEF6FB] to-[#E0F2FE] py-12 md:py-12 lg:min-h-screen" style={{ isolation: "isolate", zIndex: 1 }}>
+    <section className="relative flex snap-start items-center justify-center bg-gradient-to-b from-[#EEF6FB] to-[#E0F2FE] pt-12 pb-14 md:pt-12 md:pb-14 lg:min-h-screen" style={{ isolation: "isolate", zIndex: 1 }}>
       <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
