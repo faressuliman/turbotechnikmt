@@ -1,11 +1,41 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function WhatsAppButton() {
   const phoneNumber = "+97141234567"; // Replace with actual WhatsApp number
   const message = "Hello, I'm interested in your marine engineering services.";
   const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
+
+  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
+
+  useEffect(() => {
+    const handleLoadingComplete = () => {
+      setIsLoadingComplete(true);
+    };
+
+    if (typeof window !== "undefined") {
+      // Check if loading is already complete
+      window.addEventListener("loadingComplete", handleLoadingComplete);
+      
+      // If page is already loaded, show button immediately
+      if (document.readyState === "complete") {
+        // Wait a bit to ensure loading screen has time to show
+        setTimeout(() => {
+          setIsLoadingComplete(true);
+        }, 1200);
+      }
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("loadingComplete", handleLoadingComplete);
+      }
+    };
+  }, []);
+
+  if (!isLoadingComplete) return null;
 
   return (
     <motion.a
